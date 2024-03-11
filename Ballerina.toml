@@ -1,0 +1,13 @@
+[package]
+org = "shammi"
+name = "star_Repo_exercise"
+version = "0.1.0"
+distribution = "2201.8.0"
+
+[build-options]
+observabilityIncluded = true
+
+[[dependency]]
+org = "ballerinax"
+name = "github"
+version = "4.6.0"
