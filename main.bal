@@ -30,6 +30,7 @@ public function main() returns error? {
     // HINT: https://lib.ballerina.io/ballerinax/github/4.6.0#Client-getRepositories
     // getRepositories() function accepts two parameters, "owner" and "isOrganization" to which you must pass the "orgName" declared above and "true" respectively.
     // The return type of the function is stream<github:Repository, github:Error?>, you should assign the returned value of the function call to a variable named "repos" of this type.
+    stream<github:Repository, github:Error?> repos = check ghClient->getRepositories(orgName, true);
 
     check repos.forEach(function(github:Repository repo) {
         string repoName = repo.name;
@@ -41,6 +42,7 @@ public function main() returns error? {
         // 1. Star each repository using the starRepository() function of the ghClient.
         // HINT: https://lib.ballerina.io/ballerinax/github/4.6.0#Client-starRepository
         // starRepository() function accepts two parameters, "owner" and "repositoryName" to which you must pass the "orgName" and "repoName" variables respectively.
+        github:Error? starRepository = ghClient->starRepository(owner, repoName);
 
         if (starRepository is github:Error) {
             io:println("Error occurred while starring the repo : " + repoName + " " + starRepository.message());
